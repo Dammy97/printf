@@ -54,6 +54,20 @@ int _printf(const char *format, ...)
 				write(1, string, length);
 				counting += length;
 			}
+			else if (*format == 'd')
+			{
+				int d = va_arg(args, int);
+
+				write(1, &d, 1);
+				counting++;
+			}
+			else if (*format == 'i')
+			{
+				int i = va_arg(args, int);
+
+				write(1, &i, 1);
+				counting++;
+			}
 		}
 		format++;
 	}
