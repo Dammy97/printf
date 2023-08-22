@@ -54,15 +54,6 @@ int _printf(const char *format, ...)
 				write(1, string, length);
 				counting += length;
 			}
-			else if (*format == 'd' || *format == 'i')
-			{
-				int num = va_args(args, int);
-				char buffer[20];
-				int len = sprintf(buffer, %d, num);
-
-				fputs(buffer, stdout);
-				counting += len;
-			}
 		}
 		format++;
 	}
