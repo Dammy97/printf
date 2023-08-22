@@ -20,7 +20,7 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	while (*format)
+	while (*format != '\0')
 	{
 		if (*format != '%')
 		{
@@ -54,19 +54,14 @@ int _printf(const char *format, ...)
 				write(1, string, length);
 				counting += length;
 			}
-			else if (*format == 'd')
+			else if (*format == 'd' || *format == 'i')
 			{
-				int d = va_arg(args, int);
+				int num = va_args(args, int);
+				char buffer[20];
+				int len = sprintf(buffer, %d, num);
 
-				write(1, &d, 1);
-				counting++;
-			}
-			else if (*format == 'i')
-			{
-				int i = va_arg(args, int);
-
-				write(1, &i, 1);
-				counting++;
+				fputs(buffer, stdout);
+				counting += len;
 			}
 		}
 		format++;
