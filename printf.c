@@ -6,7 +6,7 @@
 /**
  * _printf - A function like printf
  * @format: sample string to be used to test the function
- * @Return: counting
+ * Return: counting
  */
 
 int _printf(const char *format, ...)
@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
-	
+
 	va_start(args, format);
 
 	while (*format)
@@ -40,18 +40,19 @@ int _printf(const char *format, ...)
 			else if (*format == 'c')
 			{
 				char c = va_arg(args, int);
+
 				write(1, &c, 1);
 				counting++;
 			}
 			else if (*format == 's')
 			{
 				char *string = va_arg(args, char *);
-				int length;
+				int length = 0;
 
-				for (length = 0; string[length] != '\0' ; length++)
-					counting ++;
-				length++;
+				while (string[length] != '\0')
+					length++;
 				write(1, string, length);
+				counting += length;
 			}
 		}
 		format++;
